@@ -1,0 +1,341 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	background-color: #fff;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+@font-face {
+    font-family: 'Berling Nova';
+    src: url('fonts/BerlingNovaSans.woff2') format('woff2'),
+         url('fonts/BerlingNovaSans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cordale';
+    src: url('fonts/CordaleRegular.woff2') format('woff2'),
+         url('fonts/CordaleRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Helvetica';
+    src: url('fonts/Helvetica.woff2') format('woff2'),
+         url('fonts/Helvetica.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cormorant Bold';
+    src: url('fonts/CormorantGaramond-Bold.woff2') format('woff2'),
+         url('fonts/CormorantGaramond-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cormorant Bold Italic';
+    src: url('fonts/CormorantGaramond-BoldItalic.woff2') format('woff2'),
+         url('fonts/CormorantGaramond-BoldItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cormorant Regular';
+    src: url('fonts/CormorantGaramond-Regular.woff2') format('woff2'),
+         url('fonts/CormorantGaramond-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --gold: #B3995D;
+    --grey: #9a9b9c;
+    --blue: #002664;
+    --dark-blue: #001332;
+    --h1: 80px;
+    --h2: 90px;
+    --h3: 40px;
+    --text: 18px;
+  }
+*{
+	font-family: "Helvetica", serif;
+	line-height: 1.3;
+	box-sizing: border-box;
+	color: var(--black);
+	font-weight: 300;
+}
+
+.container{
+	width: 90%;
+	margin: 0 auto;
+	max-width: 1350px;
+  	position: relative;
+  	z-index: 1;
+}
+.heroSlider{
+	height: 100vh;
+    width: 100%;
+    background-image: url(./images/hero.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.heroSlider::after{
+	content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0 0 0 / 30%) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+h1{
+	font-family: "Cordale";
+	color: var(--white);
+	font-size: var(--h1);
+	letter-spacing: 2px;
+}
+h2{
+	font-family: "Cordale";
+	color: var(--gold);
+	font-size: var(--h2);
+	margin-bottom: 50px;
+}
+h3{
+	font-family: "Cordale";
+	color: var(--white);
+	font-size: var(--h3);
+}
+.contentHero p{
+	color: var(--white);
+	font-size: 14px;
+}
+.displayHero{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+.contentHero{
+	display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+.arrowHero{
+	width: 10px;
+    height: 54px;
+}
+.boxCarousel{
+	background-image: url(./images/image-box.png);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 450px;
+    padding: 30px 50px;
+    position: relative;
+}
+.boxCarousel::after{
+	content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0 0 0 / 30%) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+.sectionTwo, .sectionThree{
+	padding: 30px 0px;
+	text-align: center;
+}
+.contentBoxCarousel{
+	display: flex;
+    align-items: end;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+.arrowRight{
+	width: 60px;
+    height: 12px;
+}
+.wrapperSectionTwo{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.lineProduct{
+	display: flex;
+    gap: 100px;
+    justify-content: space-between;
+}
+.leftProduct{
+	width: calc(60% - 100px);
+    text-align: center;
+    display: flex;
+    padding-left: 50px;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.rightProduct{
+	width: 40%;
+	background-image: url('./images/image-box.png');
+	height: 450px;
+	background-size: cover;
+	background-position: center;
+	padding: 30px 50px;
+	position: relative;
+}
+.rightProduct::after{
+	content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0 0 0 / 30%) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+.rightProduct2{
+	background-image: url('./images/image-product-2.png');
+}
+.rightProduct3, .rightProduct3{
+	background-image: url('./images/image-product-3.png');
+}
+.contentRightProduct{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	z-index: 2;
+	position: relative;
+}
+.borderProduct{
+	width: 100px;
+    height: 1px;
+    background-color: var(--gold);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.productDescription{
+	font-size: var(--text);
+    color: var(--grey);
+    font-family: 'Berling Nova';
+}
+.dots{
+	display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.dot{
+	display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--black);
+}
+.dot-active{
+    border: none;
+    outline: 1px solid var(--black);
+    outline-offset: 3px;
+}
+.wrapperLeftProduct{
+	width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.firstLetter{
+	font-size: 75px;
+    font-family: 'Cormorant Bold Italic';
+    font-style: italic;
+    color: var(--blue);
+}
+.secondLetter{
+	font-size: 25px;
+    margin-top: 57px;
+    color: var(--blue);
+    font-family: 'Cormorant Regular';
+}
+.fraction{
+	display: inline-flex;
+    align-items: center;
+    border-top: 1px solid var(--gold);
+    margin-top: 20px;
+}
+.slash{
+	transform: rotate(40deg);
+    background-color: var(--gold);
+    width: 1px;
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 15px;
+    margin-top: 35px;
+}
+.wrapperSectionThree{
+	display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.arrowTop{
+	width: 10px;
+    height: 54px;
+    transform: rotate(180deg);
+}
+.footer{
+	background-color: var(--dark-blue);
+    text-align: center;
+    padding: 20px 0px;
+}
