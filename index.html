@@ -9,15 +9,32 @@
   </head>
   <body>
     <main>
-      <div class="heroSlider">
-        <div class="displayHero">
-          <div class="contentHero">
-            <h1>Slide 1</h1>
-            <p class="descriptionHero">Description 1</p>
-            <a href="#sectionTwo"><img class="arrowHero" src="./images/arrow.png" /></a>
+      <div class="heroWrapper">
+        <div class="heroSlider">
+          <div class="displayHero">
+            <div class="contentHero">
+              <h1>Slide 1</h1>
+              <p class="descriptionHero">Description 1</p>
+              <a href="#sectionTwo"><img class="arrowHero" src="./images/arrow.png" /></a>
+            </div>
+          </div>
+          <div class="displayHero">
+            <div class="contentHero">
+              <h1>Slide 2</h1>
+              <p class="descriptionHero">Description 2</p>
+              <a href="#sectionTwo"><img class="arrowHero" src="./images/arrow.png" /></a>
+            </div>
+          </div>
+          <div class="displayHero">
+            <div class="contentHero">
+              <h1>Slide 3</h1>
+              <p class="descriptionHero">Description 3</p>
+              <a href="#sectionTwo"><img class="arrowHero" src="./images/arrow.png" /></a>
+            </div>
           </div>
         </div>
       </div>
+      
       <div class="container">
         <div class="sectionTwo" id="sectionTwo">
           <h2>Carousel Scroller</h2>
@@ -138,6 +155,26 @@
         <a href=""><img class="arrowTop" src="./images/arrow.png" /></a>
       </div>
     </main>
-  <script src="index.js"></script>
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        let slides = gsap.utils.toArray(".displayHero");
+        
+        gsap.to(slides, {
+          xPercent: -100 * (slides.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".heroWrapper",
+            pin: true,
+            scrub: 1,
+            snap: 1 / (slides.length - 1),
+            end: () => "+=" + document.querySelector(".heroWrapper").offsetWidth
+            }
+        });
+    </script>
   </body>
 </html>
