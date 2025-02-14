@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	background-color: #fff;
+    overflow-x: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -118,17 +119,6 @@ table {
     width: 300vw;
     height: 100vh;
 }
-.heroSlider::after{
-	content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0 0 0 / 30%) 100%);
-    pointer-events: none;
-    z-index: 0;
-}
 h1{
 	font-family: "Cordale";
 	color: var(--white);
@@ -177,6 +167,18 @@ h3{
     background-size: cover;
     background-position: center;
     padding-bottom: 30px;
+    position: relative;
+}
+.displayHero::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to bottom, rgba(0, 19, 50, 0) 0%, rgba(0, 19, 50, 0.3) 100%);
+    pointer-events: none;
+    z-index: 0;
 }
 .contentHero{
 	display: flex;
@@ -200,12 +202,17 @@ h3{
 }
 .boxCarousel{
 	background-image: url(./images/image-box.png);
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
     width: 100%;
     height: 450px;
     padding: 30px 50px;
     position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    text-decoration: none;
+    transition: 0.3s all;
+    background-color: #dfdfdf;
 }
 .boxCarousel::after{
 	content: "";
@@ -213,23 +220,48 @@ h3{
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 100px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0 0 0 / 30%) 100%);
+    height: 250px;
+    background: linear-gradient(to bottom, rgba(0, 19, 50, 0) 0%, rgba(0, 19, 50, 0.3) 100%);
     pointer-events: none;
     z-index: 0;
+    transition: height 0.3s ease-in-out;
+}
+.boxCarousel:hover{
+    background-size: 120%;
+}
+.boxCarousel:hover::after{
+    height: 100%;
+}
+.sectionTwo{
+    position: relative;
 }
 .sectionTwo, .sectionThree{
 	padding: 30px 0px;
 	text-align: center;
 }
 .contentBoxCarousel{
-	display: flex;
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     align-items: end;
     justify-content: space-between;
+    row-gap: 20px;
     height: 100%;
     width: 100%;
     position: relative;
     z-index: 2;
+}
+.contentBoxCarousel h3{
+    text-align: left;
+}
+.contentBoxCarousel img{
+    justify-self: end;
+    margin-bottom: 10px;
+}
+.contentBoxCarousel p{
+    width: 100%;
+    text-align: left;
+    color: var(--white);
 }
 .arrowRight{
 	width: 60px;
@@ -239,6 +271,10 @@ h3{
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+}
+#stickyTitle{
+    z-index: 9999;
+    background-color: #fff;
 }
 .lineProduct{
 	display: flex;

@@ -36,38 +36,85 @@
       </div>
       
       <div class="container">
-        <div class="sectionTwo" id="sectionTwo">
-          <h2>Carousel Scroller</h2>
-          <div class="wrapperSectionTwo">
-            <div class="boxCarousel imageBox1">
+        <div class="sectionTwo">
+          <h2 id="stickyTitle">Carousel Scroller</h2>
+          <div class="wrapperSectionTwo" id="carousel">
+            <a href="" class="boxCarousel">
               <div class="contentBoxCarousel">
-                <h3>Product 1 Title</h3>
-                <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
+                <h3 id="firstTitle">Product 1 Title</h3>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
               </div>
-            </div>
-            <div class="boxCarousel imageBox2">
+            </a>
+            <a href="" class="boxCarousel">
               <div class="contentBoxCarousel">
                 <h3>Product 2 Title</h3>
-                <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
               </div>
-            </div>
-            <div class="boxCarousel imageBox3">
+            </a>
+            <a href="" class="boxCarousel">
               <div class="contentBoxCarousel">
                 <h3>Product 3 Title</h3>
-                <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
               </div>
-            </div>
-            <div class="boxCarousel imageBox4">
+            </a>
+            <a href="" class="boxCarousel">
+              <div class="contentBoxCarousel">
+                <h3>Product 4 Title</h3>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
+              </div>
+            </a>
+            <a href="" class="boxCarousel">
+              <div class="contentBoxCarousel">
+                <h3>Product 5 Title</h3>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
+              </div>
+            </a>
+            <a href="" class="boxCarousel">
+              <div class="contentBoxCarousel">
+                <h3>Product 6 Title</h3>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
+              </div>
+            </a>
+            <a href="" class="boxCarousel">
+              <div class="contentBoxCarousel">
+                <h3>Product 7 Title</h3>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
+              </div>
+            </a>
+            <a href="" class="boxCarousel">
+              <div class="contentBoxCarousel">
+                <h3>Product 8 Title</h3>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
+              </div>
+            </a>
+            <a href="" class="boxCarousel">
+              <div class="contentBoxCarousel">
+                <h3>Product 9 Title</h3>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
+              </div>
+            </a>
+            <a href="" class="boxCarousel">
               <div class="contentBoxCarousel">
                 <h3>Product 10 Title</h3>
-                <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
+                <img class="arrowRight" src="./images/arrow-right.png" />
+                <p class="descriptionCarousel">Description</p>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
+
       <div class="sectionThree">
-        <h2>Carousel Scroller</h2>
+        <h2 id="nextTitle">Carousel Scroller</h2>
         <div class="wrapperSectionThree">
           <div class="lineProduct">
             <div class="leftProduct">
@@ -160,21 +207,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        let slides = gsap.utils.toArray(".displayHero");
-        
-        gsap.to(slides, {
-          xPercent: -100 * (slides.length - 1),
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".heroWrapper",
-            pin: true,
-            scrub: 1,
-            snap: 1 / (slides.length - 1),
-            end: () => "+=" + document.querySelector(".heroWrapper").offsetWidth
-            }
-        });
     </script>
   </body>
 </html>
