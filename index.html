@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="title" content="test">
     <link rel="stylesheet" href="./style.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
   </head>
   <body>
     <main>
-      <div class="heroWrapper">
+      <div class="heroWrapper" id="hero">
         <div class="heroSlider">
           <div class="displayHero">
             <div class="contentHero">
@@ -113,11 +114,12 @@
         </div>
       </div>
 
+      <div class="containerRSThree"></div>
       <div class="sectionThree">
         <div class="wrapperSectionThree">
           <h2 class="mBottom0" id="nextTitle">Carousel Scroller</h2>
           <div class="lineProduct">
-            <div class="leftProduct">
+            <div class="leftProduct displayNR">
               <div class="wrapperLeftProduct">
                 <p class="productDescription">Product 1 description can be limited to 2 lines</p>
                 <div class="fraction"><span class="firstLetter">1</span><div class="slash"></div><span class="secondLetter">4</span></div>
@@ -131,13 +133,13 @@
             </div>
             <div class="rightProduct">
               <div class="contentRightProduct">
-                <h3>Product 1 Title</h3>
+                <h3 class="titleProduct">Product 1 Title</h3>
                 <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
               </div>
             </div>
           </div>
           <div class="lineProduct">
-            <div class="leftProduct vHidden">
+            <div class="leftProduct vHidden displayNR">
               <div class="wrapperLeftProduct">
                 <p class="productDescription">Product 2 description</p>
                 <div class="fraction"><span class="firstLetter">2</span><div class="slash"></div><span class="secondLetter">4</span></div>
@@ -151,13 +153,13 @@
             </div>
             <div class="rightProduct rightProduct2">
               <div class="contentRightProduct">
-                <h3>Product 2 Title</h3>
+                <h3 class="titleProduct">Product 2 Title</h3>
                 <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
               </div>
             </div>
           </div>
           <div class="lineProduct">
-            <div class="leftProduct vHidden">
+            <div class="leftProduct vHidden displayNR">
               <div class="wrapperLeftProduct">
                 <p class="productDescription">Product 3 description</p>
                 <div class="fraction"><span class="firstLetter">3</span><div class="slash"></div><span class="secondLetter">4</span></div>
@@ -171,13 +173,13 @@
             </div>
             <div class="rightProduct rightProduct3">
               <div class="contentRightProduct">
-                <h3>Product 3 Title</h3>
+                <h3 class="titleProduct">Product 3 Title</h3>
                 <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
               </div>
             </div>
           </div>
           <div class="lineProduct" id="lastProduct">
-            <div class="leftProduct vHidden">
+            <div class="leftProduct vHidden displayNR">
               <div class="wrapperLeftProduct">
                 <p class="productDescription">Product 4 description</p>
                 <div class="fraction"><span class="firstLetter">4</span><div class="slash"></div><span class="secondLetter">4</span></div>
@@ -191,7 +193,7 @@
             </div>
             <div class="rightProduct rightProduct4">
               <div class="contentRightProduct">
-                <h3>Product 4 Title</h3>
+                <h3 class="titleProduct">Product 4 Title</h3>
                 <a href=""><img class="arrowRight" src="./images/arrow-right.png" /></a>
               </div>
             </div>
@@ -199,9 +201,10 @@
         </div>
       </div>
       <div class="footer">
-        <a href=""><img class="arrowTop" src="./images/arrow.png" /></a>
+        <a href="#hero"><img class="arrowTop" src="./images/arrow.png" /></a>
       </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
     <script src="index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>

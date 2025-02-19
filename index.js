@@ -59,34 +59,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    let slides = gsap.utils.toArray(".displayHero");
-    
-    gsap.to(slides, {
-        xPercent: -100 * (slides.length - 1),
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".heroWrapper",
-            pin: true,
-            scrub: 1,
-            snap: 1 / (slides.length - 1),
-            end: () => "+=" + document.querySelector(".heroWrapper").offsetWidth
-        }
-    });
+    let slides = document.querySelectorAll(".displayHero");
 
-    let observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                let content = entry.target.querySelector(".contentHero");
-                if (content) {
-                    content.classList.add("animate");
-                }
+    if (window.innerWidth >= 768) {
+        gsap.to(slides, {
+            xPercent: -100 * (slides.length - 1),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".heroWrapper",
+                pin: true,
+                scrub: 1,
+                snap: 1 / (slides.length - 1),
+                end: () => "+=" + document.querySelector(".heroWrapper").offsetWidth
             }
         });
-    }, { threshold: 0.6 });
 
-    slides.forEach((slide) => {
-        observer.observe(slide);
-    });
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    let content = entry.target.querySelector(".contentHero");
+                    if (content) {
+                        content.classList.add("animate");
+                    }
+                }
+            });
+        }, { threshold: 0.6 });
+
+        slides.forEach((slide) => {
+            observer.observe(slide);
+        });
+
+    } else {
+        let slider = tns({
+            container: ".heroSlider",
+            items: 1,
+            slideBy: "page",
+            autoplay: true,
+            autoplayTimeout: 3000,
+            controls: false,
+            nav: false,
+            mouseDrag: true,
+            touch: true,
+            speed: 800,
+            mode: "gallery",
+        });
+    }
 
     
     async function fetchProducts() {
@@ -133,15 +150,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
             });
 
-            
-            setTimeout(() => {
+            if (window.innerWidth >= 1024) {
+                setTimeout(() => {
                 const stickyTitle = document.getElementById("stickyTitle");
                 const firstTitle = document.getElementById("firstTitle");
                 const nextTitle = document.getElementById("nextTitle");
 
                 ScrollTrigger.create({
-                    trigger: firstTitle,
-                    start: "top center",
+                    trigger: stickyTitle,
+                    start: "center-=50 top",
                     endTrigger: nextTitle,
                     end: "top center",
                     pin: stickyTitle,
@@ -151,6 +168,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 ScrollTrigger.refresh();
             }, 500);
+            }else{
+                setTimeout(() => {
+                const stickyTitle = document.getElementById("stickyTitle");
+                const nextTitle = document.getElementById("nextTitle");
+
+                ScrollTrigger.create({
+                    trigger: stickyTitle,
+                    start: "center-=20 top",
+                    endTrigger: nextTitle,
+                    end: "top center",
+                    pin: stickyTitle,
+                    pinSpacing: false,
+                    toggleActions: "play none none reverse"
+                });
+
+                ScrollTrigger.refresh();
+            }, 500);
+            }
+            
         } else {
             console.error("Eroare API");
         }
@@ -159,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
     async function fetchRotatorProducts() {
         try {
             const response = await fetch("https://dummyjson.com/products?limit=4&skip=10");
-            if (!response.ok) throw new Error("Eroare la preluarea produselor pentru Rotator!");
 
             const data = await response.json();
             setupRotator(data.products);
@@ -184,7 +219,6 @@ document.addEventListener("DOMContentLoaded", function () {
         endTrigger: lastProduct,
         end: "bottom center",
         pin: true,
-        markers: true,
         anticipatePin: 1
     });
 
@@ -280,6 +314,22 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchProducts();
     fetchRotatorProducts();
 
-    
 
+    const sectionThree = document.querySelector(".sectionThree");
+    const containerRSThree = document.querySelector(".containerRSThree");
+    const originalParent = sectionThree.parentElement;
+    function moveSection() {
+        if (window.innerWidth < 768) {
+            if (!containerRSThree.contains(sectionThree)) {
+                containerRSThree.appendChild(sectionThree);
+            }
+        } else {
+            if (!originalParent.contains(sectionThree)) {
+                originalParent.appendChild(sectionThree);
+            }
+        }
+    }
+
+    moveSection(); 
+    window.addEventListener("resize", moveSection);
 });
