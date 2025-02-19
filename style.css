@@ -146,7 +146,6 @@ h3{
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
     text-align: center;
 }
 .descriptionHero{
@@ -155,7 +154,6 @@ h3{
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: none;
 }
 .displayHero{
     width: 100vw;
@@ -289,6 +287,7 @@ h3{
     gap: 50px;
     align-items: center;
     justify-content: center;
+    padding-bottom: 50px;
 }
 .rightProduct{
 	width: 40%;
@@ -313,7 +312,7 @@ h3{
 .rightProduct2{
 	background-image: url('./images/image-product-2.png');
 }
-.rightProduct3, .rightProduct3{
+.rightProduct3{
 	background-image: url('./images/image-product-3.png');
 }
 .contentRightProduct{
@@ -336,6 +335,10 @@ h3{
 	font-size: var(--text);
     color: var(--grey);
     font-family: 'Berling Nova';
+    white-space: nowrap;
+    overflow: hidden; 
+    max-width: 100%;
+    display: block;
 }
 .dots{
 	display: flex;
@@ -348,6 +351,7 @@ h3{
     height: 10px;
     border-radius: 50%;
     background-color: var(--black);
+    cursor: pointer;
 }
 .dot-active{
     border: none;
@@ -401,4 +405,10 @@ h3{
 	background-color: var(--dark-blue);
     text-align: center;
     padding: 20px 0px;
+}
+.vHidden{
+    visibility: hidden;
+}
+.mBottom0{
+    margin-bottom: 0;
 }

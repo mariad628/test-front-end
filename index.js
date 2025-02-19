@@ -95,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (response && response.ok) {
             const data = await response.json();
-            console.log("Produse primite de la API:", data.products);
 
             carouselContainer.innerHTML = ""; 
 
@@ -142,13 +141,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 ScrollTrigger.create({
                     trigger: firstTitle,
-                    start: "top-=50 center",
+                    start: "top center",
                     endTrigger: nextTitle,
                     end: "top center",
                     pin: stickyTitle,
                     pinSpacing: false,
-                    toggleActions: "play none none reverse",
-                    markers: true
+                    toggleActions: "play none none reverse"
                 });
 
                 ScrollTrigger.refresh();
@@ -158,5 +156,130 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    async function fetchRotatorProducts() {
+        try {
+            const response = await fetch("https://dummyjson.com/products?limit=4&skip=10");
+            if (!response.ok) throw new Error("Eroare la preluarea produselor pentru Rotator!");
+
+            const data = await response.json();
+            setupRotator(data.products);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function setupRotator(products) {
+    const leftProduct = document.querySelector(".leftProduct");
+    const numberElement = leftProduct.querySelector(".firstLetter");
+    const descriptionElement = leftProduct.querySelector(".productDescription");
+    const rightSections = document.querySelectorAll(".rightProduct");
+    const lastProduct = document.getElementById("lastProduct");
+    const dotsContainer = document.querySelector(".dots");
+
+    let currentIndex = 0;
+
+    ScrollTrigger.create({
+        trigger: leftProduct,
+        start: "top center",
+        endTrigger: lastProduct,
+        end: "bottom center",
+        pin: true,
+        markers: true,
+        anticipatePin: 1
+    });
+
+    setupDots(products, rightSections);
+
+    rightSections.forEach((section, index) => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => updateLeftContent(index),
+            onEnterBack: () => updateLeftContent(index)
+        });
+
+        if (products[index]) {
+            section.style.backgroundImage = `url('${products[index].thumbnail}')`;
+            section.style.backgroundSize = "cover";
+            section.style.backgroundPosition = "center";
+            title = products[index].title;
+
+            const titleElement = section.querySelector(".titleProduct");
+            if (titleElement) {
+                titleElement.textContent = products[index].title;
+            }
+        }
+    });
+
+    function updateLeftContent(index) {
+        if (!products[index] || currentIndex === index) return;
+        currentIndex = index;
+
+        gsap.to(numberElement, {
+            rotationX: 90,
+            opacity: 0,
+            duration: 0.2,
+            onComplete: () => {
+                numberElement.textContent = index + 1;
+                gsap.fromTo(numberElement, 
+                    { rotationX: -90, opacity: 0 }, 
+                    { rotationX: 0, opacity: 1, duration: 0.2 }
+                );
+            }
+        });
+
+        gsap.to(descriptionElement, { opacity: 0, y: 10, duration: 0.2, onComplete: () => {
+            descriptionElement.textContent = products[index].description || "No description available.";
+            gsap.to(descriptionElement, { opacity: 1, y: 0, duration: 0.2 });
+        }});
+
+        updateActiveDot(index);
+    }
+
+    function setupDots(products, rightSections) {
+    const dotsContainer = document.querySelector(".dots");
+    dotsContainer.innerHTML = "";
+
+    products.forEach((_, index) => {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        if (index === 0) dot.classList.add("dot-active");
+
+        dot.addEventListener("click", () => {
+            const targetElement = rightSections[index];
+
+            if (targetElement) {
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - 350; 
+
+                dotsContainer.style.pointerEvents = "none"; 
+
+                window.scrollTo({ 
+                    top: targetPosition, 
+                    behavior: "smooth" 
+                });
+
+                setTimeout(() => {
+                    dotsContainer.style.pointerEvents = "auto";
+                }, 1000);
+            }
+        });
+
+        dotsContainer.appendChild(dot);
+    });
+}
+    function updateActiveDot(index) {
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach(dot => dot.classList.remove("dot-active"));
+        dots[index]?.classList.add("dot-active");
+    }
+
+    updateActiveDot(0);
+    }
+
     fetchProducts();
+    fetchRotatorProducts();
+
+    
+
 });
